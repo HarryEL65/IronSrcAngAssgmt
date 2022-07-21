@@ -1,0 +1,14 @@
+<div dropdown>
+    <form [formGroup]="customDropDownForm">
+            <!-- <search-input></search-input> -->
+        <input type="text" formControlName="searchInput"/>
+        <ul>
+            <li *ngFor="let option of options; let idx = index" >
+                <ng-container 
+                    [ngTemplateOutlet]="optTmpRef"
+                    [ngTemplateOutletContext]="{ $implicit: option }">
+                </ng-container>
+            </li>
+        </ul>
+    </form>
+</div>
