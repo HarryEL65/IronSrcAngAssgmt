@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, forwardRef, Input, OnChanges, OnInit, Optional, Provider, Self, SimpleChanges, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, OnChanges, OnInit, Optional, Provider, Self, SimpleChanges, TemplateRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Country } from '../country.model';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { MatIconRegistry } from "@angular/material/icon";
@@ -43,6 +43,7 @@ export class CustomDropDownComponent implements OnInit, OnChanges, ControlValueA
   onTouched = () => {
     console.log('touched')
   };
+
   touched = false;
   isDisabled = false;
   @Input() placeholder = 'Please type country name';
@@ -52,7 +53,6 @@ export class CustomDropDownComponent implements OnInit, OnChanges, ControlValueA
     this._lnToTriggerSrch = coerceNumberProperty(value, 0);
   }
   @ContentChild('optTmp', {static: false}) optTmpRef!: TemplateRef<any>
-
   inputControl = new FormControl('', this.validators);
   noResults = false;
   isSearching = false;
@@ -65,8 +65,8 @@ export class CustomDropDownComponent implements OnInit, OnChanges, ControlValueA
     private changeDetectorRef: ChangeDetectorRef,
   ) {
     this.matIconRegistry.addSvgIcon(
-      "up",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/svg/up-arrow.svg")
+      "upDown",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/svg/up-down-arrow.svg")
     );
 
     if (this.controlDir) {
@@ -100,11 +100,6 @@ export class CustomDropDownComponent implements OnInit, OnChanges, ControlValueA
       }
     }
   }
-
-  // onSelect(option: any) {
-  //   this.value = option.name;
-  //   this.onChanged(option.name)
-  // }
 
   /**
    * Allows Angular to update the inputControl.
@@ -160,16 +155,6 @@ export class CustomDropDownComponent implements OnInit, OnChanges, ControlValueA
     isDisabled ? this.inputControl.disable() : this.inputControl.enable();
   }
 
-// searchKey = () => {
-//     this.filteredOptions = this.options;
-//  }
-
-//  onFilter = (data: any) => {
-//    this.onChanged(data)
-//    this.value = data;
-//    this.searchKey();
-//  }
-
   /**
    * Method linked to the mat-autocomplete `[displayWith]` input.
    * This is how result name is printed in the input box.
@@ -177,12 +162,12 @@ export class CustomDropDownComponent implements OnInit, OnChanges, ControlValueA
   displayFn(result: Country): string  {
     return result?.name;
   }
- private get validators(): ValidatorFn[] {
-  return [Validators.required, containsCodeValidation];
-}
-isMinLength(value: string) {
-  return value.length >= this._lnToTriggerSrch;
-}
-  
 
+  private get validators(): ValidatorFn[] {
+    return [Validators.required, containsCodeValidation];
+  }
+
+  isMinLength(value: string) {
+    return value.length >= this._lnToTriggerSrch;
+  }
 }

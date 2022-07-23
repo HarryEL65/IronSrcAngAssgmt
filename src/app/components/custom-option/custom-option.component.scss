@@ -14,6 +14,8 @@
     background: rgb(218 228 250) !important;
 }
 .option-wrapper {
+    position: relative;
+    top: 8px;
     display: flex;
     align-items: baseline;
     padding: 0 15px;

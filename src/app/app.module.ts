@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MaterialModule } from './material-module';
 import { CustomDropDownModule } from './custom-drop-down/custom-drop-down.module';
 
 import { AppComponent } from './app.component';
 import { CustomOptionComponent } from './components/custom-option/custom-option.component';
 import { IconComponent } from './components/icon/icon.component';
+import { MaterialModule } from './material-module';
 
 @NgModule({
   declarations: [
@@ -18,10 +18,9 @@ import { IconComponent } from './components/icon/icon.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    // FormsModule,
     ReactiveFormsModule,
     CustomDropDownModule,
-    // MaterialModule
+    MaterialModule
   ],
   exports: [
     IconComponent

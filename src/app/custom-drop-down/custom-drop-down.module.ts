@@ -5,10 +5,6 @@ import { DropDownMenuComponent } from './drop-down-menu/drop-down-menu.component
 import { MaterialModule } from '../material-module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-
-
-
 @NgModule({
   declarations: [
     CustomDropDownComponent,
@@ -16,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-    FormsModule,
     MaterialModule,
     HttpClientModule
   ],

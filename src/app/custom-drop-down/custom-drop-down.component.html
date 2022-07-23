@@ -1,4 +1,4 @@
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" >
     <input
         matInput
         type="text"
@@ -9,7 +9,7 @@
         required
         (blur)="onTouched()"
     />
-  <mat-icon svgIcon="up"></mat-icon>
+  <mat-icon svgIcon="upDown"></mat-icon>
 
   <!-- <mat-error *ngIf="!inputControl.valid && inputControl?.errors?.required">
     This field is required
@@ -19,13 +19,13 @@
 <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption="true" [displayWith]="displayFn">
     <mat-option *ngIf="isSearching; else optionsTemplate" disabled="true">
         <em>Searching...</em>
-      </mat-option>
-      <ng-template #optionsTemplate>
-        <mat-option *ngFor="let option of options" [value]="option" class="provided">
-            <ng-container 
-                [ngTemplateOutlet]="optTmpRef"
-                [ngTemplateOutletContext]="{ $implicit: option }">
-            </ng-container>
-        </mat-option>
-      </ng-template>
+    </mat-option>
+    <ng-template #optionsTemplate>
+    <mat-option *ngFor="let option of options" [value]="option" class="provided">
+        <ng-container 
+            [ngTemplateOutlet]="optTmpRef"
+            [ngTemplateOutletContext]="{ $implicit: option }">
+        </ng-container>
+    </mat-option>
+    </ng-template>
 </mat-autocomplete>

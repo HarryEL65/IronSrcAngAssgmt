@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, delay, distinctUntilChanged, map, Observable, of, startWith, switchMap } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
+import { map, Observable, of, startWith, switchMap } from 'rxjs';
 import { Country } from './country.model';
 import { countries } from './data';
 
@@ -15,10 +15,11 @@ export class AppComponent implements OnInit {
   selectedVal!:any;
   countries: Country[] = countries;
   countries$!: Observable<any>;
+
   parentForm = this.fb.group({
     name: ['Harry Elnekave'],
-    country: [''],
-    address: ['12 Rue des egouts']
+    country: ['Israel'],
+    company: ['IronSource']
   });
   
  
@@ -31,12 +32,10 @@ export class AppComponent implements OnInit {
         if (typeof name === 'string') {
           return of(countries)
             .pipe(
-              // will be used in custom drop down
-              // debounceTime(500),
-              // distinctUntilChanged(),
               map(countries => countries.filter((
                 country => country.name.toLowerCase().includes(name.toLowerCase())
-                )))
+                ))),
+              map(countries => countries.sort(this.sortByName))
             )
         }
         return of([]);
@@ -44,7 +43,12 @@ export class AppComponent implements OnInit {
       )
     )
   }
-  
+
+  sortByName = (a: Country, b: Country) => {
+    const nameA = a.name.toLocaleUpperCase();
+    const nameB = b.name.toLocaleUpperCase();
+    return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+  }
 
   handleOptionSelected = (data: any) => {
     console.log('app selection is: ', data);

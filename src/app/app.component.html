@@ -1,10 +1,10 @@
 <!-- selectedVal: {{selectedVal?.name | json}} -->
 <form [formGroup]="parentForm">
 
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" formControlName="name">
-    </div>
+    <mat-form-field appearance="fill">
+        <mat-label for="name">Developer Name</mat-label>
+        <input matInput type="text" id="name" formControlName="name">
+    </mat-form-field>
 
     <ngiron-custom-drop-down [options]="countries$ | async" formControlName="country">
         <ng-template #optTmp let-country>
@@ -17,9 +17,9 @@
         </ng-template>
     </ngiron-custom-drop-down>
 
-    <div class="form-group">
-        <label for="name">Address</label>
-        <input type="text" id="address" formControlName="address">
-    </div>
+    <mat-form-field appearance="fill">
+        <mat-label for="company">Company name</mat-label>
+        <input matInput type="text" id="company" formControlName="company">
+    </mat-form-field>
 
 </form>

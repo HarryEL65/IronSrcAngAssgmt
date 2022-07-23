@@ -10,11 +10,12 @@ body {
   padding: 30px;
 }
 
-.cdk-overlay-pane  {
+.cdk-overlay-pane,
+.mat-form-field  {
   min-width: 350px!important;
   max-width: 400px!important;
 }
-.mat-form-field {
-  min-width: 350px!important;
-  max-width: 400px!important;
+
+.mat-form-field-infix {
+  display: flex!important;
 }

@@ -1,11 +1,6 @@
 :host {
-    // display: block;
-    // height: 45px;
     display: flex;
     justify-content: space-around;
-    // min-width: 200px;
-    // max-width: 300px;
-    // line-height: 45px;
     align-items: baseline;
 }
 
@@ -13,4 +8,19 @@ ul {
     list-style: none;
     box-shadow: 1px 0 7px 0px rgb(0 0 0 / 20%);
     padding-inline-start: 10px;
+}
+.mat-focused .mat-icon {
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+.mat-icon {
+    color: navy;
+    transform: rotate(360deg);
+    transition: 0.5s;
+}
+
+.mat-form-field {
+    font-size: larger;
+    font-family: sans-serif;
+    color: #163a7e;
 }
