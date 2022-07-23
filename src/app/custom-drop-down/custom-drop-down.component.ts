@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ContentChild, forwardRef, Input, OnChanges, OnInit, Provider, SimpleChanges, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Country } from '../country.model';
 type HTMLElementEvent<T extends HTMLElement> = Event & {
   target: T;
 }
@@ -28,7 +29,7 @@ export class CustomDropDownComponent implements ControlValueAccessor, OnInit, On
   };
   touched = false;
   isDisabled = false;
-  @Input() options:any;
+  @Input() options!:Country[];
   @ContentChild('optTmp', {static: false}) optTmpRef!: TemplateRef<any>
   
   constructor(private fb: FormBuilder) { }

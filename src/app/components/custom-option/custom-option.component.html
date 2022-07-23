@@ -1,5 +1,5 @@
 <div class="option-wrapper" (click)="selectOption(country)" [ngClass]="isSelected ? 'is-selected': ''">
-    <app-icon [iconName]="country.alpha2Code"></app-icon>
+    <app-icon [iconName]="country.code"></app-icon>
     <div class="label" [title]="country.name">
         {{ (country?.name?.length>25)? (country?.name | slice:0:25)+'...':(country?.name) }}
     </div>

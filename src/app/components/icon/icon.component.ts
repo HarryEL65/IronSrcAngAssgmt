@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class IconComponent implements OnInit {
 
-  @Input() iconName!:any //country.alpha2Code
+  @Input() iconName!:any //country.code
   constructor() { }
 
   ngOnInit(): void {
