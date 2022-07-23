@@ -6,7 +6,7 @@
         <input type="text" id="name" formControlName="name">
     </div>
 
-    <ngiron-custom-drop-down [options]="countries" formControlName="country">
+    <ngiron-custom-drop-down [options]="countries$ | async" formControlName="country">
         <ng-template #optTmp let-country>
             <!-- Here you can replace my cutom-option with yours -->
             <custom-option 

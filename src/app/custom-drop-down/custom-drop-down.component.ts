@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ContentChild, forwardRef, Input, OnChanges, OnInit, Provider, SimpleChanges, TemplateRef } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Country } from '../country.model';
 type HTMLElementEvent<T extends HTMLElement> = Event & {
   target: T;
@@ -20,7 +21,7 @@ const CUSTOM_DROP_DOWN_VALUE_ACCESSOR: Provider = {
 export class CustomDropDownComponent implements ControlValueAccessor, OnInit, OnChanges {
   value!: string;
   searchText = ''
-  filteredOptions: any[]=[];
+  filteredOptions: any;;
   onChanged =  ($event: Event) => {};
 
 
@@ -29,7 +30,7 @@ export class CustomDropDownComponent implements ControlValueAccessor, OnInit, On
   };
   touched = false;
   isDisabled = false;
-  @Input() options!:Country[];
+  @Input() options!:Observable<Country[]>;
   @ContentChild('optTmp', {static: false}) optTmpRef!: TemplateRef<any>
   
   constructor(private fb: FormBuilder) { }
@@ -59,9 +60,7 @@ export class CustomDropDownComponent implements ControlValueAccessor, OnInit, On
     this.isDisabled = isDisabled;
   }
   searchKey = () => {
-    this.filteredOptions = this.value === '' ? this.options : this.options.filter((option: any ) => {
-     return option.name.toLowerCase().includes(this.value.toLowerCase());
-   })
+    this.filteredOptions = this.options;
  }
 
  onFilter = (data: any) => {
