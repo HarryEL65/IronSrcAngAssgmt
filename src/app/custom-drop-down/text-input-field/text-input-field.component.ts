@@ -5,11 +5,11 @@ const validate = (control: AbstractControl): (ValidationErrors | null) => {
   return Validators.required(control);
 }
 
-const CUSTOM_DROP_DOWN_VALUE_ACCESSOR: Provider = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => textInputFieldComponent),
-  multi: true
-}
+// const CUSTOM_INPUT_VALUE_ACCESSOR: Provider = {
+//   provide: NG_VALUE_ACCESSOR,
+//   useExisting: forwardRef(() => textInputFieldComponent),
+//   multi: true
+// }
 @Component({
   selector: 'text-input-field',
   templateUrl: './text-input-field.component.html',

@@ -1,32 +1,31 @@
-<div dropdown>
-    <input type="text" 
-            [ngModel]="value" 
-            [disabled]="isDisabled" 
-            (ngModelChange)="onFilter($event)" 
-            (blur)="onTouched()"
+<mat-form-field appearance="fill">
+    <input
+        matInput
+        type="text"
+        [matAutocomplete]="auto"
+        matAutocompletePosition="below"
+        [formControl]="inputControl"
+        [placeholder]="placeholder"
+        required
+        (blur)="onTouched()"
     />
-    <ul>
-        <li *ngFor="let option of filteredOptions" (click)="onSelect(option)">
+  <mat-icon svgIcon="up"></mat-icon>
+
+  <!-- <mat-error *ngIf="!inputControl.valid && inputControl?.errors?.required">
+    This field is required
+  </mat-error> -->
+
+</mat-form-field>
+<mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption="true" [displayWith]="displayFn">
+    <mat-option *ngIf="isSearching; else optionsTemplate" disabled="true">
+        <em>Searching...</em>
+      </mat-option>
+      <ng-template #optionsTemplate>
+        <mat-option *ngFor="let option of options" [value]="option" class="provided">
             <ng-container 
                 [ngTemplateOutlet]="optTmpRef"
                 [ngTemplateOutletContext]="{ $implicit: option }">
             </ng-container>
-        </li>
-    </ul>
-</div>
-<!-- <div dropdown>
-    <input type="text" 
-            [ngModel]="value" 
-            [disabled]="isDisabled" 
-            (ngModelChange)="onFilter($event)" 
-            (blur)="onTouched()"
-    />
-    <ul>
-        <li *ngFor="let option of filteredOptions" (click)="onSelect(option)">
-            <ng-container 
-                [ngTemplateOutlet]="optTmpRef"
-                [ngTemplateOutletContext]="{ $implicit: option }">
-            </ng-container>
-        </li>
-    </ul>
-</div> -->
+        </mat-option>
+      </ng-template>
+</mat-autocomplete>

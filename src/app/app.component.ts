@@ -31,8 +31,9 @@ export class AppComponent implements OnInit {
         if (typeof name === 'string') {
           return of(countries)
             .pipe(
-              debounceTime(500),
-              distinctUntilChanged(),
+              // will be used in custom drop down
+              // debounceTime(500),
+              // distinctUntilChanged(),
               map(countries => countries.filter((
                 country => country.name.toLowerCase().includes(name.toLowerCase())
                 )))

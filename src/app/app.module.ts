@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MaterialModule } from './material-module';
+import { CustomDropDownModule } from './custom-drop-down/custom-drop-down.module';
 
 import { AppComponent } from './app.component';
 import { CustomOptionComponent } from './components/custom-option/custom-option.component';
 import { IconComponent } from './components/icon/icon.component';
-import { CustomDropDownModule } from './custom-drop-down/custom-drop-down.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +17,11 @@ import { CustomDropDownModule } from './custom-drop-down/custom-drop-down.module
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    // FormsModule,
     ReactiveFormsModule,
     CustomDropDownModule,
-    // NgModule
+    // MaterialModule
   ],
   exports: [
     IconComponent
