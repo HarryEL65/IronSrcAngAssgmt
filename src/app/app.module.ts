@@ -16,7 +16,8 @@ import { CustomDropDownModule } from './custom-drop-down/custom-drop-down.module
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    CustomDropDownModule
+    CustomDropDownModule,
+    // NgModule
   ],
   exports: [
     IconComponent

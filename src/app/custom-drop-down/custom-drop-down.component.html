@@ -1,14 +1,21 @@
 <div dropdown>
-    <form [formGroup]="customDropDownForm">
-            <!-- <search-input></search-input> -->
-        <input type="text" formControlName="searchInput"/>
-        <ul>
-            <li *ngFor="let option of options; let idx = index" >
-                <ng-container 
-                    [ngTemplateOutlet]="optTmpRef"
-                    [ngTemplateOutletContext]="{ $implicit: option }">
-                </ng-container>
-            </li>
-        </ul>
-    </form>
+    <input type="text" 
+            [ngModel]="value" 
+            [disabled]="isDisabled" 
+            (ngModelChange)="onFilter($event)" 
+            (blur)="onTouched()"
+    />
+    <!-- <text-input-field
+        name="country"
+        ngModel
+        placeholder="Please select a country">
+    </text-input-field> -->
+    <ul>
+        <li *ngFor="let option of filteredOptions" (click)="onSelect(option)">
+            <ng-container 
+                [ngTemplateOutlet]="optTmpRef"
+                [ngTemplateOutletContext]="{ $implicit: option }">
+            </ng-container>
+        </li>
+    </ul>
 </div>

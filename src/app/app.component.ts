@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  parentForm!: FormGroup;
   title = 'ironSrcAngAssign';
   selectedVal!:any;
 
@@ -262,10 +264,24 @@ export class AppComponent {
     {name:"Zimbabwe",alpha2Code:"ZW"}
   ];
 
-  constructor(){}
+  constructor(private fb: FormBuilder){}
+  ngOnInit(): void {
+    this.parentForm = this.fb.group({
+      name: ['Harry Elnekave'],
+      country: ['United States'],
+      address: ['12 Rue des egouts']
+    });
+    // this.parentForm.controls['country'].valueChanges.subscribe(val => {
+    //   console.log('parentForm: ', val);
+    // })
+    this.parentForm.valueChanges.subscribe(val => {
+      console.log('parentForm: ', val);
+    })
+  }
+  
 
   handleOptionSelected = (data: any) => {
-    console.log('app com. selection is: ', data);
+    console.log('app selection is: ', data);
     this.selectedVal = data;
   }
 
