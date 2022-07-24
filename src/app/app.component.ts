@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { map, Observable, of, startWith, switchMap } from 'rxjs';
+import { delay, map, Observable, of, startWith, switchMap } from 'rxjs';
 import { Country } from './country.model';
 import { countries } from './data';
 
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   this.countries$ = this.parentForm.controls['country'].valueChanges 
     .pipe(
       // startWith(null),
+      delay(300),
       switchMap( name => {
         if (typeof name === 'string') {
           return of(countries)

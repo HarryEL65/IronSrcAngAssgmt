@@ -11,9 +11,9 @@
     />
   <mat-icon svgIcon="upDown"></mat-icon>
 
-  <!-- <mat-error *ngIf="!inputControl.valid && inputControl?.errors?.required">
+  <mat-error *ngIf="!inputControl.valid && inputControl?.errors">
     This field is required
-  </mat-error> -->
+  </mat-error>
 
 </mat-form-field>
 <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption="true" [displayWith]="displayFn">
@@ -21,11 +21,14 @@
         <em>Searching...</em>
     </mat-option>
     <ng-template #optionsTemplate>
-    <mat-option *ngFor="let option of options" [value]="option" class="provided">
-        <ng-container 
-            [ngTemplateOutlet]="optTmpRef"
-            [ngTemplateOutletContext]="{ $implicit: option }">
-        </ng-container>
-    </mat-option>
+        <mat-option *ngFor="let option of options" [value]="option" class="provided">
+            <ng-container 
+                [ngTemplateOutlet]="optTmpRef"
+                [ngTemplateOutletContext]="{ $implicit: option }">
+            </ng-container>
+        </mat-option>
     </ng-template>
+    <mat-option *ngIf="!isSearching && noResults" value="" disabled="true">
+        <b>No results found</b>
+    </mat-option>
 </mat-autocomplete>
