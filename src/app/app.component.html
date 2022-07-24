@@ -1,25 +1,31 @@
-<!-- selectedVal: {{selectedVal?.name | json}} -->
-<form [formGroup]="parentForm">
+<mat-card>
+    <mat-card-title>Angular Homne Assignment</mat-card-title>
+    <form [formGroup]="parentForm">
 
-    <mat-form-field appearance="fill">
-        <mat-label for="name">Developer Name</mat-label>
-        <input matInput type="text" id="name" formControlName="name">
-    </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="name">Developer Name</mat-label>
+            <input matInput type="text" id="name" formControlName="name">
+        </mat-form-field>
 
-    <ngiron-custom-drop-down [options]="countries$ | async" formControlName="country">
-        <ng-template #optTmp let-country>
-            <!-- Here you can replace my cutom-option with yours -->
-            <custom-option 
-                [country]="country" 
-                (selected)="handleOptionSelected(country)" 
-                [isSelected]="selectedVal?.name==country.name">
-            </custom-option>
-        </ng-template>
-    </ngiron-custom-drop-down>
+        <ngiron-custom-drop-down [options]="countries$ | async" formControlName="country">
+            <ng-template #optTmp let-country>
+                <!-- Here you can replace my cutom-option with yours -->
+                <custom-option 
+                    [country]="country" 
+                    (selected)="handleOptionSelected(country)" 
+                    [isSelected]="selectedVal?.name==country.name">
+                </custom-option>
+            </ng-template>
+        </ngiron-custom-drop-down>
 
-    <mat-form-field appearance="fill">
-        <mat-label for="company">Company name</mat-label>
-        <input matInput type="text" id="company" formControlName="company">
-    </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="company">Company name</mat-label>
+            <input matInput type="text" id="company" formControlName="company">
+        </mat-form-field>
 
-</form>
+    </form>
+</mat-card>
+
+<div class="json-form-data">
+    {{formData$ | async | json}}
+</div>

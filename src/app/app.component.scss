@@ -1,7 +1,14 @@
 :host {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 2em;
 }
 .is-selected{
     background: rgb(135, 161, 223);
+}
+.json-form-data {
+    margin: 2em;
 }
