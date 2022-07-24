@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
 
   parentForm = this.fb.group({
     name: ['Harry Elnekave'],
-    // country: [ {name:"Israel",code:"IL"}],
-    country: ['Israel'],
+    country: [ {name:"Israel",code:"IL"}],
+    // country: ['Israel'],
     company: ['IronSource']
   });
   
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
     .pipe(
       // startWith(null),
       delay(300),
-      switchMap( name => {
+      switchMap( (name: any) => {
         if (typeof name === 'string') {
           return of(countries)
             .pipe(
